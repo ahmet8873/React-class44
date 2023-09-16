@@ -1,0 +1,41 @@
+/* App.css */
+
+/* Styles for the App component */
+.App {
+  text-align: center;
+  margin-top: 30px;
+}
+
+/* Styles for the Counter component */
+.counter {
+  margin-top: 20px;
+  text-align: center;
+}
+
+/* Styles for the Count component */
+.count {
+  margin-top: 10px;
+  text-align: center;
+}
+
+/* Styles for the Button component */
+.button {
+  margin-top: 20px;
+  text-align: center;
+}
+
+/* Styles for the buttons in the Button component */
+.button button {
+  margin: 5px;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+.button button:hover {
+  background-color: #0056b3;
+}
+
+/* Add more styles as needed for your components */
