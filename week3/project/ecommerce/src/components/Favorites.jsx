@@ -4,16 +4,13 @@ import heartSolidIcon from "../assets/heart-solid.svg";
 import useFetch from "../useFetch";
 
 const Favorites = () => {
-  const { favorites, addToFavorites, removeFromFavorites, isFavorite } =
-    useFavorites();
-
-  const toggleFavorite = (productId) => {
-    if (isFavorite(productId)) {
-      removeFromFavorites(productId);
-    } else {
-      addToFavorites(productId);
-    }
-  };
+  const {
+    favorites,
+    addToFavorites,
+    removeFromFavorites,
+    isFavorite,
+    toggleFavorite,
+  } = useFavorites();
 
   const { data: productsData } = useFetch("https://fakestoreapi.com/products");
 

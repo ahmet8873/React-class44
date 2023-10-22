@@ -1,26 +1,17 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import useFetch from "../useFetch";
 
 const ProductDetail = () => {
   const { id } = useParams();
-  const [product, setProduct] = useState({});
 
-  useEffect(() => {
-    const fetchProduct = async () => {
-      try {
-        const response = await fetch(`https://fakestoreapi.com/products/${id}`);
-        if (!response.ok) {
-          throw new Error("Error fetching product");
-        }
-        const data = await response.json();
-        setProduct(data);
-      } catch (error) {
-        console.error("Error fetching product:", error);
-      }
-    };
+  const { data: product, loading } = useFetch(
+    `https://fakestoreapi.com/products/${id}`
+  );
 
-    fetchProduct();
-  }, [id]);
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <>

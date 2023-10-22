@@ -103,3 +103,13 @@
   align-items: center;
   width: 80%;
 }
+
+/* NavBar styles */
+nav ul {
+  display: flex;
+  list-style: none;
+}
+
+nav ul li {
+  margin-right: 20px;
+}

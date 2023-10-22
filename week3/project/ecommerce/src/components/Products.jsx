@@ -1,42 +1,26 @@
-import { Link } from "react-router-dom";
+import { useMemo } from "react";
 import { useFavorites } from "../FavoritesContext";
-import heartRegularIcon from "../assets/heart-regular.svg";
-import heartSolidIcon from "../assets/heart-solid.svg";
+
+import Product from "./Product";
 
 const Products = ({ productsData, selectedCategory }) => {
-  const filteredProducts = selectedCategory
-    ? productsData.filter((product) => product.category === selectedCategory)
-    : productsData;
+  const filteredProducts = useMemo(() => {
+    return selectedCategory
+      ? productsData.filter((product) => product.category === selectedCategory)
+      : productsData;
+  }, [productsData, selectedCategory]);
 
-  const { addToFavorites, removeFromFavorites, isFavorite } = useFavorites();
-
-  const toggleFavorite = (productId) => {
-    if (isFavorite(productId)) {
-      removeFromFavorites(productId);
-    } else {
-      addToFavorites(productId);
-    }
-  };
+  const { toggleFavorite } = useFavorites();
 
   return (
     <div>
       <ul className="product-list">
         {filteredProducts.map((product) => (
-          <li key={product.id}>
-            <Link to={`/products/${product.id}`}>
-              <div>
-                <img src={product.image} alt="product" />
-                <p>{product.title}</p>
-              </div>
-            </Link>
-            <button onClick={() => toggleFavorite(product.id)}>
-              {isFavorite(product.id) ? (
-                <img src={heartSolidIcon} alt="Solid Heart" />
-              ) : (
-                <img src={heartRegularIcon} alt="Regular Heart" />
-              )}
-            </button>
-          </li>
+          <Product
+            key={product.id}
+            product={product}
+            onToggleFavorite={() => toggleFavorite(product.id)}
+          />
         ))}
       </ul>
     </div>
